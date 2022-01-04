@@ -1,0 +1,54 @@
+{% extends 'profile/base1.html' %}
+
+{% block main %}
+
+<div class="container">
+    <h2 class="text-center m-3">UPLOAD NOTES</h2>
+
+    <form action="/upload_notes/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row my-3">
+            <div class="col-md">
+                <select name="branch" class="form-select" required>
+                    <option selected>SELECT A BRANCH</option>
+                    {% for branch in branches %}
+                        <option value={{branch.id}}>{{branch.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md">
+                <input type="text" class="form-control" placeholder="Subject" name="subject" required>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-md">
+                <input type="file" name="file" class="form-control" placeholder="Notes File" required>
+            </div>  
+            <div class="col-md ">
+                <select name="file_type" class="form-select" required>
+                    <option selected>SELECT A FILE TYPE</option>
+                    <option value="Text">TEXT</option>
+                    <option value="PNG"> PNG</option>
+                    <option value="PPT">PPT</option>
+                </select>
+            </div> 
+        </div>
+
+        <div class="row my-3">
+            <div class="col">
+                <input type="text" name="description" class="form-control" placeholder="Description" required>
+            </div>
+
+        </div>
+        
+
+
+
+        <input type="submit" value="UPLOAD" class="btn btn-primary mt-3">
+    </form>
+
+</div>
+
+
+{% endblock main %}

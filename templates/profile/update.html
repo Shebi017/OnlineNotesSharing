@@ -1,0 +1,66 @@
+{% extends 'profile/base1.html' %}
+
+{% block main %}
+
+<div class="container">
+    <h2 class="text-center m-3">EDIT PROFILE</h2>
+
+    <form action="/update_profile/" method="POST">
+        {% csrf_token %}
+        <div class="row my-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="First Name" name="fname" value={{profile.user.first_name}} required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Last Name" name="lname" value={{profile.user.last_name}} required>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Contact Number" name="phone" value={{profile.phone}}>
+            </div>
+            <div class="col">
+                <input type="email" class="form-control" placeholder="Email Address" name="email" value={{profile.user.email}}>
+            </div>   
+        </div>
+
+        <div class="row my-3">
+            <div class="col">
+                <input type="text" name="username" class="form-control" placeholder="Username" value={{profile.user.username}}>
+            </div>
+            
+        </div>
+
+        <div class="row my-3">
+            <div class="col">
+                <select name="branch" class="form-select">
+                    <option selected value={{profile.branch.id}}>{{profile.branch}}</option>
+                    {% for branch in branches %}
+                        <option value={{branch.id}}>{{branch.name}}</option>
+                    {% endfor %}
+                    
+                </select>
+            </div>
+
+            <div class="col">
+                <select name="role" class="form-select">
+                    <option selected>{{profile.role}}</option>
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                </select>
+            </div>
+
+        </div>
+        
+
+
+
+        <input type="submit" value="EDIT" class="btn btn-primary mt-3 ">
+        <br><br>
+    </form>
+
+</div>
+
+
+{% endblock main %}

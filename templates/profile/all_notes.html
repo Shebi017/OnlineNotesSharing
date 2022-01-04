@@ -1,0 +1,42 @@
+{% extends 'profile/base1.html' %}
+
+{% block main %}
+
+    <div class="container">
+        <h2 class="text-center my-5">ALL NOTES</h2>
+
+        <table class="table table-striped">
+            <thead>
+              <tr class="table-info">
+                <th scope="col">S.No</th>
+                <th scope="col">Uploaded By</th>
+                <th scope="col">Uploaded Date</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Download</th>
+                <th scope="col">File Type</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for note in notes %}
+                <tr>
+                  <th scope="row">{{note.id}}</th>
+                  <td>{{note.profile.user.email}}</td>
+                  <td>{{note.uploaded_date}}</td>
+                  <td>{{note.branch.name}}</td>
+                  <td>{{note.subject}}</td>
+                  <td><a href="{{note.file.url}}" class="btn btn-sm btn-primary" download="DOWNLOAD">Download</a></td>
+                  <td>{{note.file_type}}</td>
+                  <td>{{note.description}}</td>
+                  <td>{{note.status}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+
+
+{% endblock main %}
